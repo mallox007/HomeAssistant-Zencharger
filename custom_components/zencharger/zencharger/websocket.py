@@ -83,13 +83,6 @@ class ZenchargerWebSocket:
 
                 data = parsed["data"]
 
-                # If data has not changed, don't update:
-                if (
-                    data["meterData"]["totalEnergy"] == self.charger[ID_TOTAL_ENERGY]
-                    and data["state"] == self.charger[ID_STATE]
-                ):
-                    return
-
                 self.charger = async_hydrate_data(data)
                 dispatcher_send(self._hass, "charger_data_update")
 
