@@ -84,9 +84,9 @@ class ZenchargerApi:
     def system_snapshot(self) -> dict:
         """Get system snapshot from API."""
 
-        return self._do_call(self._host + '/api/v1/system/diagnostics/snapshot', {})
+        return self._do_call(self._host + '/api/v1/system/diagnostics/snapshot')
 
-    def _do_call(self, url: str, body: dict):
+    def _do_call(self, url: str):
         if self._sessionId is None:
             self.login()
 
@@ -96,7 +96,7 @@ class ZenchargerApi:
         }
 
         try:
-            response = httpx.post(url, headers=headers, json=body, timeout=5)
+            response = httpx.get(url, headers=headers, timeout=5)
             response.raise_for_status()
             json_data = response.json()
 
@@ -104,7 +104,7 @@ class ZenchargerApi:
             if ATTR_FAIL_CODE in json_data and json_data[ATTR_FAIL_CODE] == 305:
                 # token expired
                 self._sessionId = None
-                return self._do_call(url, body)
+                return self._do_call(url)
 
             if ATTR_FAIL_CODE in json_data and json_data[ATTR_FAIL_CODE] != 0:
                 raise ZenchargerApiError(
