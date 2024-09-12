@@ -94,9 +94,10 @@ class ZenchargerApi:
             "accept": "application/json",
             "cookie": self._sessionId,
         }
+        _LOGGER.info(f"headers {headers}")
 
         try:
-            response = get(url, headers=headers, timeout=5)
+            response = httpx.get(url, headers=headers, timeout=5)
             response.raise_for_status()
             json_data = response.json()
 
