@@ -18,15 +18,15 @@ class ZenchargerApiPowerSensor(ZenchargerApiPowerEntity, SensorEntity):
 
     def __init__(
             self,
-            zencharger: ZenchargerApiCoordinator,
+            coordinator: ZenchargerApiCoordinator,
             description: EntityDescription,
     ) -> None:
         """Initialize the sensor."""
-        super().__init__(zencharger, description)
+        super().__init__(coordinator, description)
 
     @callback
     def update_from_latest_data(self) -> None:
         """Fetch new state data for the sensor."""
-        raw = self._zencharger.data.get(self.entity_description.key)
+        raw = self.coordinator.data.get(self.entity_description.key)
         self._attr_native_value = raw
         self.async_write_ha_state()

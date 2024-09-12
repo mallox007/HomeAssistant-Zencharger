@@ -1,24 +1,22 @@
 from homeassistant.core import callback
 from homeassistant.helpers.device_registry import DeviceInfo
-from homeassistant.helpers.dispatcher import async_dispatcher_connect
-from homeassistant.helpers.entity import Entity, EntityDescription
+from homeassistant.helpers.entity import EntityDescription
+from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .api import ZenchargerApi
 from .api_update_coordinator import ZenchargerApiCoordinator
 from ..const import DOMAIN
-from .websocket import ZenchargerWebSocket
 
 
-class ZenchargerApiEntity(Entity):
+class ZenchargerApiEntity(CoordinatorEntity):
     """Base class for all Zencharger entities."""
 
     def __init__(
             self,
-            zencharger: ZenchargerApiCoordinator,
+            coordinator: ZenchargerApiCoordinator,
             description: EntityDescription,
     ):
+        super().__init__(coordinator, description)
         """Initialize the entity"""
-        self._zencharger = zencharger
         self.entity_description = description
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, "Zencharger")},

@@ -14,11 +14,11 @@ class ZenchargerApiPowerEntity(ZenchargerApiEntity):
 
     def __init__(
             self,
-            zencharger: ZenchargerApiCoordinator,
+            coordinator: ZenchargerApiCoordinator,
             description: EntityDescription,
     ):
         """Initialize the entity"""
-        super().__init__(zencharger, description)
+        super().__init__(coordinator, description)
 
     @property
     def device_class(self):
