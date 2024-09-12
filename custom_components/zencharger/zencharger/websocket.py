@@ -29,9 +29,17 @@ _LOGGER = logging.getLogger(__name__)
 @callback
 def async_hydrate_data(data: dict[str, str]) -> dict[str, str]:
     """Hydrate data with addition or normalized data."""
+    sessionEnergy = 0.0
+    totalEnergy = 0.0
+    if 'meterData' in data:
+        meterData = data['meterData']
+        if 'sessionEnergy' in meterData:
+            sessionEnergy = meterData['sessionEnergy']
+        if 'totalEnergy' in meterData:
+            totalEnergy = meterData['totalEnergy']
     return {
-        ID_TOTAL_ENERGY: data["meterData"]["totalEnergy"],
-        ID_SESSION_ENERGY: data["meterData"]["sessionEnergy"],
+        ID_TOTAL_ENERGY: totalEnergy,
+        ID_SESSION_ENERGY: sessionEnergy,
         ID_INSTANTANEOUS_POWER: sum(data["meterData"]["instantaneousPower"]),
         ID_INSTANTANEOUS_POWER_PHASE_1: data["meterData"]["instantaneousPower"][0],
         ID_INSTANTANEOUS_POWER_PHASE_2: data["meterData"]["instantaneousPower"][1],
