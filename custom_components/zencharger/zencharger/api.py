@@ -92,11 +92,11 @@ class ZenchargerApi:
 
         headers = {
             "accept": "application/json",
-            "xsrf-token": self._sessionId,
+            "cookie": self._sessionId,
         }
 
         try:
-            response = httpx.get(url, headers=headers, timeout=5)
+            response = get(url, headers=headers, timeout=5)
             response.raise_for_status()
             json_data = response.json()
 
