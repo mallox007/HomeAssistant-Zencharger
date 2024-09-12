@@ -29,3 +29,4 @@ class ZenchargerApiPowerSensor(ZenchargerApiPowerEntity, SensorEntity):
         """Fetch new state data for the sensor."""
         raw = self._zencharger.data.get(self.entity_description.key)
         self._attr_native_value = raw
+        self.async_write_ha_state()
