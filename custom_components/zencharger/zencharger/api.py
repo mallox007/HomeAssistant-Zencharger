@@ -101,22 +101,6 @@ class ZenchargerApi:
             response.raise_for_status()
             json_data = response.json()
 
-            # Session Expired code?
-            if ATTR_FAIL_CODE in json_data and json_data[ATTR_FAIL_CODE] == 305:
-                # token expired
-                self._sessionId = None
-                return self._do_call(url)
-
-            if ATTR_FAIL_CODE in json_data and json_data[ATTR_FAIL_CODE] != 0:
-                raise ZenchargerApiError(
-                    f"Retrieving the data for {url} failed with failCode: {json_data[ATTR_FAIL_CODE]}, message: {json_data[ATTR_DATA]}"
-                )
-
-            if ATTR_DATA not in json_data:
-                raise ZenchargerApiError(
-                    f"Retrieving the data failed. Raw response: {response.text}"
-                )
-
             return json_data
 
         except KeyError as error:
