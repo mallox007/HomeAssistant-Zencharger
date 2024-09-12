@@ -25,7 +25,7 @@ class ZenchargerApiPowerSensor(ZenchargerApiPowerEntity, SensorEntity):
         super().__init__(coordinator, description)
 
     @callback
-    def update_from_latest_data(self) -> None:
+    def _handle_coordinator_update(self) -> None:
         """Fetch new state data for the sensor."""
         raw = self.coordinator.data.get(self.entity_description.key)
         self._attr_native_value = raw

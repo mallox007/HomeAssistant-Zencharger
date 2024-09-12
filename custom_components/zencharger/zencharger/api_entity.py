@@ -15,7 +15,7 @@ class ZenchargerApiEntity(CoordinatorEntity):
             coordinator: ZenchargerApiCoordinator,
             description: EntityDescription,
     ):
-        super().__init__(coordinator, description)
+        super().__init__(coordinator)
         """Initialize the entity"""
         self.entity_description = description
         self._attr_device_info = DeviceInfo(
@@ -25,7 +25,3 @@ class ZenchargerApiEntity(CoordinatorEntity):
         )
         self._attr_unique_id = f"{description.key}"
 
-    @callback
-    def update_from_latest_data(self) -> None:
-        """Update the entity from the latest data."""
-        raise NotImplementedError
