@@ -7,7 +7,7 @@ from custom_components.zencharger.zencharger.api import ZenchargerApi
 
 _LOGGER = logging.getLogger(__name__)
 
-SCAN_INTERVAL = timedelta(minutes=2)  # Adjust the interval as needed
+SCAN_INTERVAL = timedelta(seconds=30)  # Adjust the interval as needed
 
 
 class ZenchargerApiCoordinator(DataUpdateCoordinator):
