@@ -13,7 +13,7 @@ SCAN_INTERVAL = timedelta(minutes=2)  # Adjust the interval as needed
 class ZenchargerApiCoordinator(DataUpdateCoordinator):
     def __init__(self, hass, zencharger_api: ZenchargerApi):
         """Initialize the coordinator."""
-        super().__init__(hass, _LOGGER, name="my_integration", update_interval=SCAN_INTERVAL)
+        super().__init__(hass, _LOGGER, name="zencharger", update_interval=SCAN_INTERVAL)
         self._zencharger_api = zencharger_api
 
     async def _async_update_data(self):
