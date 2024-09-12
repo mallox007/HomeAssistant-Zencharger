@@ -19,6 +19,9 @@ ID_INSTANTANEOUS_POWER = "instantaneousPower"
 ID_INSTANTANEOUS_POWER_PHASE_1 = "instantaneousPower1"
 ID_INSTANTANEOUS_POWER_PHASE_2 = "instantaneousPower2"
 ID_INSTANTANEOUS_POWER_PHASE_3 = "instantaneousPower3"
+ID_CURRENT_POWER_USAGE_PHASE_1 = "currentPowerUsage1"
+ID_CURRENT_POWER_USAGE_PHASE_2 = "currentPowerUsage2"
+ID_CURRENT_POWER_USAGE_PHASE_3 = "currentPowerUsage3"
 
 # Possible Name suffixes
 NAME_REALTIME_POWER = "Realtime Power"

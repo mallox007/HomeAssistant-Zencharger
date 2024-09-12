@@ -81,6 +81,11 @@ class ZenchargerApi:
         except Exception as error:
             raise ZenchargerApiError("Could not get status")
 
+    def system_snapshot(self) -> dict:
+        """Get system snapshot from API."""
+
+        return self._do_call('/api/v1/system/diagnostics/snapshot', {})
+
     def _do_call(self, url: str, body: dict):
         if self._sessionId is None:
             self.login()
